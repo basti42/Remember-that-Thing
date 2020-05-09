@@ -1,0 +1,35 @@
+{
+
+  "manifest_version": 2,
+  "name": "Remember that Thing",
+  "version": "0.1",
+
+  "description": "Simple todo list application. But privacy concious since all your data stays right in your browser. Just though, you know, remember that thing!",
+  "homepage_url": "https://github.com/basti42/Remember-that-thing",
+
+  "browser_specific_settings": {
+     "gecko": {
+       "id": "basti.addon.dev@gmail.com"
+     }
+   },
+
+  "background" : {
+    "scripts":["background_scripts/backend.js", "background_scripts/landing_page_finder.js"]
+  },
+
+  "icons": {
+    "48": "icons/icon_48.png",
+    "96": "icons/icon_96.png"
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "unlimitedStorage"
+  ],
+  "browser_action": {
+    "default_icon" : "icons/icon_32.png",
+    "default_title" : "Remember that Thing"
+  }
+
+}
