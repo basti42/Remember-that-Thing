@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', (evt)=> {
                             await sendToBackend(obj, 'ADDNEWTASK');
                             hideOverlay();
                         } else {
-                            console.log("Is not ok, not sending to backend!");
+                            console.debug("[DEBUG] Not all required fields were filled out!");
                         }
                     })
                     .catch((err) => { console.error(err); });

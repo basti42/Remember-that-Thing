@@ -98,12 +98,10 @@
   }
 
   async function delteTaskFromDatabase(msg){
-    console.log("[BACKEND] Removing Task with Hash: ", msg.payload.hash);
     let store = getObjectStore(TASKSTORENAME, 'readwrite');
     let req = store.delete(msg.payload.hash);
-    console.log(req);
     req.onsuccess = async (evt) => {
-      console.log(evt);
+      console.log("[INFO] Successfully removed: ", evt);
     };
     req.onerror = async (err) => {
       console.error(err);
@@ -125,7 +123,7 @@
         let thirdStore = getObjectStore(TASKSTORENAME, 'readwrite');
         let request = thirdStore.delete(e.target.result);
         request.onsuccess = async (evt) => {
-          console.log(evt.target);
+          console.log("[INFO] Successfully resolved: ", evt.target);
         };
         request.onerror = async (err) => {
           console.error(err);
@@ -201,7 +199,7 @@
 	async function handleMessage(message){
 		console.debug("[DEBUG] Message from: ", message);
 		if (message.request === "GETACTIVETASKS"){        // get all tasks and return them
-      console.log("[BACKEND] Message received: ", message);
+      console.debug("[BACKEND] Message received: ", message);
 			await returnActiveTasks(message, sendResponse);			
     } 
     else if (message.request === 'ADDNEWTASK'){       // add the payload as new data
