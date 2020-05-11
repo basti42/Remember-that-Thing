@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', (evt)=> {
 
 
     /* ~~~~~~~~~~~~~~~~ EVENT-LISTENER ~~~~~~~~~~~~~~~~ */
+    document.onkeypress = async(evt) => {
+        if (110 === evt.keyCode){ // n = 110
+            showOverlay();
+        }
+    };
+
     addTaskButton.addEventListener('click', (evt) => {
         evt.preventDefault();
         let target = evt.target;

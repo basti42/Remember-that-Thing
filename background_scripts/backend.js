@@ -116,6 +116,7 @@
     req.onsuccess = async (evt) => {
       //second step: add the task to the resolved store
       let task = evt.target.result;
+      task.resolvedat = new Date();
       let secondStore = getObjectStore(RESOLVEDTASKSTORENAME, 'readwrite');
       let r = secondStore.add(task);
       r.onsuccess = async (e) => {

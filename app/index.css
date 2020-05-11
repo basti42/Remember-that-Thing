@@ -15,6 +15,7 @@ html, body {
   display: flex; flex-direction: column;
 }
 
+
 /* ~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~ */
 .header-wrapper {
   flex: 0 1 auto; width: 97%; min-height: 50px; max-height: 50px;
@@ -145,6 +146,7 @@ div#add-task-button:hover {
 }
 
 .footer-item > span { cursor: pointer; width: 15%; }
+
 
 /* ~~~~~~~~~~~~~~~ OVERLAY ~~~~~~~~~~~~~~~ */
 div#slider {

@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "Remember that Thing",
-  "version": "0.1",
+  "version": "0.2",
 
   "description": "Simple todo list application. But privacy concious since all your data stays right in your browser. Just though, you know, remember that thing!",
   "homepage_url": "https://github.com/basti42/Remember-that-thing",
