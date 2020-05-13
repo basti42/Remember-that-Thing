@@ -1,0 +1,54 @@
+div.history-column {
+    flex: 0 1 100%; min-width: 46vw; max-width: 46vw;
+    height: 100%; min-height: 80vh; max-height: 80vh;
+    padding-left: 1%;
+    overflow-y: auto;
+}
+
+ul#history-resolved-task-list {
+    list-style: none;
+    margin-left: 5%; margin-right: 5%; padding: 0px;
+}
+
+div.resolved-task-wrapper {
+    display: flex; flex-direction: row; justify-content: flex-start;
+    width: 100%; height: 15vh; flex-wrap: wrap;
+    border-left: thick solid #515151;
+    margin: 3% 0px;
+}
+
+div.resolved-task-wrapper:hover .resolved-task-wrapper-row {
+    border-color: rgb(58, 134, 255);
+}
+
+div.resolved-task-wrapper:hover{
+    border-color: rgb(58, 134, 255);
+    transform: scale(1.0075);
+    cursor: pointer;
+}
+
+div.resolved-task-wrapper-row {
+    flex: 0 1 100%; display: flex; flex-direction: row;
+    border-bottom: thin solid #515151;
+}
+
+div.resolved-task-wrapper-item {
+    flex: 0 1 50%; display: flex; flex-direction: column;
+    padding-left: 1%;
+}
+
+.resolved-task-wrapper-item-label {
+    font-size: 8pt; 
+}
+
+/* ~~~~~~~~~~~~~ Stats Table ~~~~~~~~~~~~~ */
+table {
+    width: 97%;
+}
+
+table > tbody > tr > td { padding: 1% 0px; }
+
+td.td-value {
+    text-align: right;
+    font-style: italic;
+}

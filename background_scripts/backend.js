@@ -167,7 +167,36 @@
     req.onerror = (err) => { handleError(err); };
   }
 
+  async function returnResolvedTasks(msg, sendbackCallback){
+    let store = getObjectStore(RESOLVEDTASKSTORENAME, 'readonly');
+    let req = store.getAll();
+    req.onsuccess = (evt) => {
+      let results = evt.target.result;
+      results.sort((a, b) => {
+        let t1 = a.resolvedat.getTime();
+        let t2 = a.resolvedat.getTime();
+        if (t1 > t2) return -1;
+        else if (t1 == t2) return 0;
+        else return 1;
+      });
+      sendbackCallback({taburl: msg.url, 
+                        originalrequest: msg.request,
+                        tasks: results});
+    };
+    req.onerror = (err) => { handleError(err); };
+  }
 
+  async function returnResolvedTaskByHash(msg, sendbackCallback){
+    let store = getObjectStore(RESOLVEDTASKSTORENAME, 'readonly');
+    let req = store.get(msg.payload.hash);
+    req.onsuccess = (evt) => {
+      console.log(evt.target);
+      sendbackCallback({taburl: msg.url,
+                        originalrequest: msg.request,
+                        task: evt.target.result});
+    };
+    req.onerror = (evt) => { handleError(err); };
+  }
   
 
   /* ---------------------- MESSAGE HANDLING -------------------------------- */
@@ -214,6 +243,12 @@
     }
     else if (message.request === 'RESOLVETASK'){      // move task from active to resolved store
       await resolveTask(message);
+    }
+    else if (message.request === 'GETRESOLVEDTASKS'){ // get all removed tasks and return them
+      await returnResolvedTasks(message, sendResponse);
+    }
+    else if (message.request === 'GETRESOLVEDTASKBYHASH'){
+      await returnResolvedTaskByHash(message, sendResponse);
     }
     
     else {

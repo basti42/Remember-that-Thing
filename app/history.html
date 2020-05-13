@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-source 'self' localhost/*">
+
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="history.css" />
+    <title>Remember that Thing</title>
+  </head>
+  <body>
+
+    <div class='main-wrapper'>
+      <div class='header-wrapper'>
+        <div class='header-item'>
+
+          <div class='header-logo'>
+            <a href='./index.html'>
+                <img src='../icons/icon_48.png' alt='Icon'/>
+            </a>
+            <h3>Resolved Things - History</h3>
+          </div>
+
+        </div>
+        <div class='header-item align-right'>
+          <div class='nav-space'>
+            <a href='./history.html'>History</a>
+            <!-- <a href='./settings.html'>Settings</a> -->
+          </div>
+        </div>
+        <div class='header-item align-right'>
+          <form>
+            <input type='text' name='search-input' id='search-input' placeholder="in development..." disabled/>
+          </form>
+        </div>
+
+      </div>
+
+      <div class='content-wrapper'>
+
+        <div class='content-row-wrapper'>
+
+            <!-- Resolved things overview -->
+            <div class='history-column'>
+                <ul id='history-resolved-task-list'>
+
+                </ul>
+            </div>
+
+            <div class='history-column'>
+                <h3 class='slider-underline'>Stats</h3>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class='td-label'>Total number of resolved Things:</td>
+                            <td class='td-value' id='stats-total'></td>
+                        </tr>
+                        <tr>
+                            <td class='td-label'>Average Time until Resolution:</td>
+                            <td class='td-value' id='stats-avg-time'></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          
+        </div>
+
+      </div>
+
+      <div class='footer-wrapper'>
+        <div class="footer-item"></div>
+        <div class="footer-item align-center"></div>
+        <div class="footer-item align-right">version 0.3</div>
+      </div>
+    </div>
+
+    <div id='backdrop'></div>
+    <div id='details-slider'>
+        <div class='details-slider-wrapper'>
+          <h3 class="slider-underline" id='details-task-header'></h3>
+          <div id="details-task-category">
+            <div id='details-task-tag'></div>
+            <div id='details-task-duedate'></div>
+          </div>
+          <div id='details-task-description'></div>
+          <div id='details-task-controls'>
+
+          </div>
+        </div>
+    </div>
+
+
+  
+  <script src='history.js'></script>
+  </body>
+</html>
