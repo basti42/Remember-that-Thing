@@ -33,8 +33,14 @@ div.resolved-task-wrapper-row {
 }
 
 div.resolved-task-wrapper-item {
-    flex: 0 1 50%; display: flex; flex-direction: column;
+    flex: 0 1 50%; max-width: 50%; min-width: 50%;
+    display: flex; flex-direction: column;
     padding-left: 1%;
+}
+
+div.resolved-task-wrapper-item > span {
+    overflow: hidden;
+    white-space: nowrap; text-overflow: ellipsis; 
 }
 
 .resolved-task-wrapper-item-label {

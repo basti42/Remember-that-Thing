@@ -29,15 +29,18 @@ document.addEventListener('DOMContentLoaded', (evt)=> {
     const modal = document.querySelector('#modal');
     const closeModalButton = document.querySelector('#close-modal-button');
     const searchInput = document.querySelector('#search-input');
+    const searchIcon = document.querySelector('#search-icon');
 
 
 
     /* ~~~~~~~~~~~~~~~~ EVENT-LISTENER ~~~~~~~~~~~~~~~~ */
-    document.onkeypress = async(evt) => {
+    const onkeypressfunction = async(evt) => {
         if (110 === evt.keyCode){ // n = 110
             showOverlay();
         }
     };
+
+    document.onkeypress = onkeypressfunction;
 
     addTaskButton.addEventListener('click', (evt) => {
         evt.preventDefault();
@@ -95,33 +98,57 @@ document.addEventListener('DOMContentLoaded', (evt)=> {
         hideDetailsOverlay();
     });
 
-    // searchInput.addEventListener('submit', evt => { evt.preventDefault(); });
-    // searchInput.addEventListener('click', evt => { evt.preventDefault(); });
-    // searchInput.addEventListener('change', (evt) => {
-    //     evt.preventDefault();
-    //     if (evt.target.value.length >= 3 ){
-    //         console.log(evt.target.value);
-    //         let cards = document.querySelectorAll('div.card');
-    //         for (let card of cards){
-    //             console.log(card);
-    //             if (!card.innerText.includes(evt.target.value)){
-    //                 card.style.display = 'none';
-    //             }
-    //         }            
-    //     }
-    // });
+    searchInput.addEventListener('submit', evt => { evt.preventDefault(); });
+    searchInput.addEventListener('click', evt => { evt.preventDefault(); });
+    searchInput.addEventListener('keyup', (evt) => {
+        evt.preventDefault();
+        // control removal button
+        if (evt.target.value.length > 0){
+            document.querySelector('#search-icon').style.display = 'block';
+        }
+        // searching
+        if (evt.target.value.length >= 3 ){
+            let cards = document.querySelectorAll('div.card');
+            for (let card of cards){
+                let inner = card.innerText.toLowerCase();
+                let target = evt.target.value.toLowerCase();
+                let match = inner.includes(target);
+                if (!match){
+                    card.classList.add('card-hide');
+                }
+            }            
+        }
+    });
+    searchInput.addEventListener('focusin', evt => {
+        evt.preventDefault();
+        document.onkeypress = undefined;
+    });
+
+    searchInput.addEventListener('focusout', evt => {
+        evt.preventDefault();
+        document.onkeypress = onkeypressfunction;
+    });
+
+    searchIcon.addEventListener('click', (evt) => {
+        searchInput.value = '';
+        resetCards();
+        searchIcon.style.display = 'none';
+    });
 
 
     /* ~~~~~~~~~~~~~~~~ METHODS ~~~~~~~~~~~~~~~~ */
     function showOverlay(){
         backdrop.classList.add('backdrop-show');
         slider.classList.add('show');
+        // focus first input line and disable document.onkeypree
         document.querySelector('#input-task-title').focus();
+        document.onkeypress = undefined;
     }
 
     function hideOverlay(){
         slider.classList.remove('show');
         backdrop.classList.remove('backdrop-show');
+        document.onkeypress = onkeypressfunction;
     }
 
     function showDetailsOverlay(){
@@ -142,6 +169,13 @@ document.addEventListener('DOMContentLoaded', (evt)=> {
     function hideModal(){
         backdrop.classList.remove('backdrop-show');
         modal.classList.remove('show-modal');
+    }
+
+    function resetCards(){
+        let cards = document.querySelectorAll('div.card');
+        for (let card of cards){
+            card.classList.remove('card-hide');
+        }
     }
 
     function setDetails(card){

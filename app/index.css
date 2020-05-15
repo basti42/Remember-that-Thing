@@ -45,12 +45,26 @@ div.nav-space > a {
   align-items: center;
 }
 
+div#search-input-wrapper {
+  flex: 0 1 100%; display: flex; flex-direction: row;
+}
+
+div#search-icon {
+  flex: 0 1 10%; min-width: 30px; max-width: 30px; 
+  height: 30px; min-height: 100%; max-height: 100%;
+  background-image: url('../icons/cancel_icon.svg');
+  background-size: cover;
+  cursor: pointer;
+  display: none;
+}
+
 .header-logo > h3 { margin-left: 2%; }
 .header-logo > img {height: 44px; }
 .header-logo > a > img {height: 44px; }
 
-.header-item > form > input {
-  width: 80%;
+.header-item > form > div > input {
+  width: 80%; 
+  outline: none;
 }
 
 
@@ -74,6 +88,8 @@ div.card {
   border: thin solid #515151; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   cursor: pointer;
 }
+
+div.card-hide { display: none !important; }
 
 div.card:hover {
   transform: scale(1.05);

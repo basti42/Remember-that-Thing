@@ -20,15 +20,27 @@ document.addEventListener('DOMContentLoaded', (evt)=> {
 
     /* ~~~~~~~~~~~~~~~~ METHODS ~~~~~~~~~~~~~~~~ */
     const formatTimePassed = (millisecs) => {
-        let secs = (millisecs / 1000).toFixed(0);
-        let mins = (secs / 60).toFixed(0);
-        let hours = (mins / 60).toFixed(0);
-        let days = (hours / 24).toFixed(0);
+        let delta = millisecs / 1000;               // put everything in terms of seconds
+        let days = Math.floor(delta / (24*3600));  
+        delta -= days * 24 * 3600;
+        let hours = Math.floor(delta / 3600) % 24;
+        delta -= hours * 3600;
+        let mins = Math.floor(delta / 60) % 60;
+        delta -= mins * 60;
+        let secs = (delta % 60).toFixed(0);
+        console.log(`${days}d ${hours}h ${mins}m ${secs}s`);
         return `${days}d ${hours}h ${mins}m ${secs}s`;
     };
 
     const getTimePassed = (later, earlier) => {
         return later.getTime() - earlier.getTime();
+    };
+
+    const formatText = (txt, limit) => {
+        if (txt.length > limit){
+            return txt.substr(0, limit) + "...";
+        }
+        return txt;
     };
 
     function showOverlay(){
@@ -92,7 +104,7 @@ const displayStats = async (tasks) => {
                 titlelabel.classList.add('resolved-task-wrapper-item-label')
                 titlelabel.innerText = "Title"
                 let titlevalue = document.createElement('span');
-                titlevalue.innerText = task.title;
+                titlevalue.innerText = formatText(task.title, 29);
                 d1.appendChild(titlelabel);
                 d1.appendChild(titlevalue);
 
